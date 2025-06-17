@@ -8,9 +8,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-rs8rt4x_0t6ts=^_5$crpx)0z7a)=#&a2p&_pmr+tiru0(9(-@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["172.17.39.30", "192.168.30.12", "127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["ppetracker.onrender.com"]
 
 # Application definition
 INSTALLED_APPS = [
