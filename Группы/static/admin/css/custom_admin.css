@@ -1,0 +1,64 @@
+/* Custom styles for Django Admin (Jazzmin) */
+
+/* Import modern font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #F4F7FC;
+}
+
+/* Sidebar customization */
+#side-nav {
+    background-color: #283E4A !important;
+    transition: all 0.3s ease-in-out;
+}
+#side-nav a {
+    color: #FFFFFF !important;
+}
+#side-nav a:hover {
+    background-color: #1E2C39 !important;
+    color: #50E3C2 !important;
+}
+
+/* Buttons */
+button, .button {
+    border-radius: 8px !important;
+    transition: all 0.3s ease;
+}
+button:hover, .button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Cards */
+.card {
+    border-radius: 12px !important;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form inputs */
+input, select, textarea {
+    border-radius: 6px !important;
+    border: 1px solid #CCC !important;
+    padding: 8px !important;
+    transition: border 0.3s;
+}
+input:focus, select:focus, textarea:focus {
+    border-color: #4A90E2 !important;
+    box-shadow: 0px 0px 8px rgba(74, 144, 226, 0.3);
+}
+
+/* Animations */
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.navbar .user-profile span {
+    color: #000 !important;  /* Ensures text is black */
+    font-weight: bold;        /* Makes text more visible */
+}

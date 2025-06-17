@@ -1,0 +1,224 @@
+{% extends "admin/index.html" %}
+
+{% block content %}
+{{ block.super }}
+
+<head>
+    <style>
+        /* Notification Button */
+        .admin-btn {
+            position: fixed;
+            top: 70px; /* Moved below the navbar */
+            right: 30px;
+            background: linear-gradient(135deg, #d1258c, #023ca6);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            cursor: pointer;
+        }
+
+        .admin-btn:hover {
+            background: linear-gradient(135deg, #023ca6, #d1258c);
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(8, 76, 234, 0.8);
+            text-decoration: none;
+        }
+
+        /* Notification Badge */
+        .notification-badge {
+            background: red;
+            color: white;
+            border-radius: 50%;
+            padding: 5px 10px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Shaking Bell Animation */
+        @keyframes shake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-15deg); }
+            50% { transform: rotate(15deg); }
+            75% { transform: rotate(-15deg); }
+        }
+
+        .shake-bell {
+            display: inline-block;
+            animation: shake 0.5s infinite;
+        }
+
+    </style>
+</head>
+
+<!-- Always Visible Notification Button -->
+<a href="{% url 'notifications' %}" class="admin-btn" id="notification-button">
+    <span id="bell-icon">🔔</span>
+    <span id="notification-text" style="color: antiquewhite">Просмотреть уведомления</span>
+    <span id="notification-count" class="notification-badge hidden"></span>
+</a>
+
+<script>
+    function fetchNotifications() {
+        fetch("{% url 'get_notification_count' %}")
+            .then(response => response.json())
+            .then(data => {
+                const countBadge = document.getElementById("notification-count");
+                const bellIcon = document.getElementById("bell-icon");
+
+                let seenNotifications = localStorage.getItem("seen_notifications");
+
+                if (data.count > 0 && !seenNotifications) {
+                    countBadge.innerText = data.count;
+                    countBadge.classList.remove("hidden");
+                    bellIcon.classList.add("shake-bell"); // Apply shake animation ONLY to bell
+                } else {
+                    countBadge.classList.add("hidden");
+                    bellIcon.classList.remove("shake-bell"); // Remove shake when no notifications
+                }
+            });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        fetchNotifications();
+    });
+
+    document.getElementById("notification-button").addEventListener("click", function () {
+        localStorage.setItem("seen_notifications", "true");
+    });
+
+    window.addEventListener("beforeunload", function () {
+        localStorage.removeItem("seen_notifications");
+    });
+</script>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{#ZAXIRA KOD / BUTTON UCHUN#}
+
+{#{% extends "admin/index.html" %}#}
+
+
+
+{##}
+{#{% block content %}#}
+{#{{ block.super }}#}
+{##}
+{#<head>#}
+{#    <style>#}
+{#        .admin-btn {#}
+{#            position: absolute;#}
+{#            top: 15px;#}
+{#            right: 20px;#}
+{#            background: linear-gradient(135deg, #d1258c, #023ca6);#}
+{#            color: white;#}
+{#            padding: 10px 18px;#}
+{#            border-radius: 30px;#}
+{#            font-weight: bold;#}
+{#            text-decoration: none;#}
+{#            transition: all 0.5s ease-in-out;#}
+{#            box-shadow: 0 4px 10px rgb(117, 6, 6);#}
+{#            font-size: 18px;#}
+{#            display: flex;#}
+{#            align-items: center;#}
+{#            gap: 10px;#}
+{#        }#}
+{##}
+{#        .admin-btn:hover {#}
+{#            background: linear-gradient(135deg, #023ca6, #d1258c);#}
+{#            transform: scale(1.05);#}
+{#            box-shadow: 0 6px 12px rgb(8, 76, 234);#}
+{#            text-decoration: none;#}
+{#        }#}
+{##}
+{#        .notification-badge {#}
+{#            background: red;#}
+{#            color: white;#}
+{#            border-radius: 50%;#}
+{#            padding: 5px 10px;#}
+{#            font-size: 14px;#}
+{#            font-weight: bold;#}
+{#        }#}
+{##}
+{#        .hidden {#}
+{#            display: none;#}
+{#        }#}
+{#    </style>#}
+{#</head>#}
+{##}
+{#<a href="{% url 'notifications' %}" class="admin-btn" style="color: antiquewhite">#}
+{#    🔔 <span id="notification-text">Просмотреть уведомления</span>#}
+{#    <span id="notification-count" class="notification-badge hidden"></span>#}
+{#</a>#}
+{##}
+{#<script>#}
+{#    function fetchNotifications() {#}
+{#        fetch("{% url 'get_notification_count' %}") // Call the existing endpoint#}
+{#            .then(response => response.json())#}
+{#            .then(data => {#}
+{#                const countBadge = document.getElementById("notification-count");#}
+{##}
+{#                if (data.count > 0) {#}
+{#                    countBadge.innerText = data.count;#}
+{#                    countBadge.classList.remove("hidden");#}
+{#                } else {#}
+{#                    countBadge.classList.add("hidden");#}
+{#                }#}
+{#            });#}
+{#    }#}
+{##}
+{#    document.addEventListener("DOMContentLoaded", function () {#}
+{#        fetchNotifications();#}
+{#    });#}
+{#</script>#}
+{##}
+{#{% endblock %}#}
